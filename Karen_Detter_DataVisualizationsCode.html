@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Karen Detter">
+
+<title>Use of Exclamation Points in Twitter Posts</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/quarto-html/quarto.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/quarto-html/popper.min.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Karen_Detter_DataVisualizationsCode_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Karen_Detter_DataVisualizationsCode_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Karen_Detter_DataVisualizationsCode_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Karen_Detter_DataVisualizationsCode_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/jquery-3.5.1/jquery.min.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/proj4js-2.3.15/proj4.js"></script>
+<link href="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/css/motion.css" rel="stylesheet">
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/highcharts.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/highcharts-3d.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/highcharts-more.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/stock.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/map.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/data.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/exporting.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/drilldown.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/item-series.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/annotations.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/export-data.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/funnel.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/heatmap.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/treemap.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/sankey.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/organization.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/streamgraph.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/sunburst.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/vector.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/wordcloud.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/xrange.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/tilemap.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/venn.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/gantt.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/timeline.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/bullet.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/coloraxis.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/dumbbell.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/lollipop.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/series-label.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/plugins/motion.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/custom/reset.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highcharts-9.3.1/modules/boost.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/highchart-binding-0.9.4/highchart.js"></script>
+<link href="Karen_Detter_DataVisualizationsCode_files/libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="Karen_Detter_DataVisualizationsCode_files/libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="Karen_Detter_DataVisualizationsCode_files/libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="Karen_Detter_DataVisualizationsCode_files/libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Use of Exclamation Points in Twitter Posts</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Karen Detter </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>Punctuation marks are usually removed from text before sentiment analysis is conducted, but exclamation points in particular can indicate the magnitude of emotions like anger or joy.</p>
+<p>To examine the use of exclamation points in Twitter posts, random streams of tweets were collected over several hours on 12/08/22. After filtering for english language and use of exclamation points, the final n = 585 tweets.</p>
+<p>Examining a word cloud of aggregated post content showed exclamation points were generally used when expressing positive feelings, such as joy, love, and gratitude.</p>
+<p>Sentiment analysis, however, showed that exclamation points were used somewhat differently according to the user’s country. For example, users from Moldova, United Arab Emirates, and Uganda had significant fear scores for their posts with exclamation points. Of course, this was an extremely small study which contained only random tweets posted during a short time period, so no inference can be made from the results.</p>
+<p>Future studies could examine the emotions associated with exclamation point use more in-depth by using a much larger dataset of social media posts, limiting included posts to specific topics, or making comparisons between posts that do and don’t use exclamation points.</p>
+<p><strong>Initial Code Used To Create Data File</strong></p>
+<div class="cell">
+
+</div>
+</section>
+<section id="i.-prep-tweets-data-set-for-analysis" class="level1">
+<h1>I. Prep Tweets Data Set For Analysis</h1>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+</section>
+<section id="ii.-word-cloud" class="level1">
+<h1>II. Word Cloud</h1>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
+✔ tibble  3.1.8      ✔ dplyr   1.0.10
+✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+✔ readr   2.1.3      ✔ forcats 0.5.2 </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.2.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'purrr' was built under R version 4.2.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'stringr' was built under R version 4.2.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tm' was built under R version 4.2.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: NLP
+
+Attaching package: 'NLP'
+
+The following object is masked from 'package:ggplot2':
+
+    annotate</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'wordcloud' was built under R version 4.2.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: RColorBrewer</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in tm_map.SimpleCorpus(tweets, removeNumbers): transformation drops
+documents</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in tm_map.SimpleCorpus(tweets, removeWords, stopwords("english")):
+transformation drops documents</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in tm_map.SimpleCorpus(tweets, removePunctuation): transformation drops
+documents</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in tm_map.SimpleCorpus(tweets, stripWhitespace): transformation drops
+documents</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in tm_map.SimpleCorpus(tweets, stemDocument): transformation drops
+documents</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in tm_map.SimpleCorpus(tweets, content_transformer(tolower)):
+transformation drops documents</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Karen_Detter_DataVisualizationsCode_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="iii.-sentiment-analysis-by-location" class="level1">
+<h1>III. Sentiment Analysis By Location</h1>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'reshape2'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:tidyr':
+
+    smiths</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'quantmod':
+  method            from
+  as.zoo.data.frame zoo </code></pre>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidytext' was built under R version 4.2.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining, by = "word"
+Selecting by n</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Karen_Detter_DataVisualizationsCode_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="highchart html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8b07cbffe6c59a6ae8e9" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8b07cbffe6c59a6ae8e9">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"series":[{"name":"Australia","data":[{"Country":"Australia","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"Australia","variable":"anticipation","value":0,"y":0,"name":"anticipation"},{"Country":"Australia","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"Australia","variable":"fear","value":0,"y":0,"name":"fear"},{"Country":"Australia","variable":"joy","value":0,"y":0,"name":"joy"},{"Country":"Australia","variable":"sadness","value":0,"y":0,"name":"sadness"},{"Country":"Australia","variable":"surprise","value":0,"y":0,"name":"surprise"},{"Country":"Australia","variable":"trust","value":0,"y":0,"name":"trust"}],"type":"line"},{"name":"Canada","data":[{"Country":"Canada","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"Canada","variable":"anticipation","value":0.333333333333333,"y":0.333333333333333,"name":"anticipation"},{"Country":"Canada","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"Canada","variable":"fear","value":0,"y":0,"name":"fear"},{"Country":"Canada","variable":"joy","value":1,"y":1,"name":"joy"},{"Country":"Canada","variable":"sadness","value":0,"y":0,"name":"sadness"},{"Country":"Canada","variable":"surprise","value":0,"y":0,"name":"surprise"},{"Country":"Canada","variable":"trust","value":0.666666666666667,"y":0.666666666666667,"name":"trust"}],"type":"line"},{"name":"India","data":[{"Country":"India","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"India","variable":"anticipation","value":0,"y":0,"name":"anticipation"},{"Country":"India","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"India","variable":"fear","value":0,"y":0,"name":"fear"},{"Country":"India","variable":"joy","value":0,"y":0,"name":"joy"},{"Country":"India","variable":"sadness","value":0,"y":0,"name":"sadness"},{"Country":"India","variable":"surprise","value":0,"y":0,"name":"surprise"},{"Country":"India","variable":"trust","value":0,"y":0,"name":"trust"}],"type":"line"},{"name":"Italy","data":[{"Country":"Italy","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"Italy","variable":"anticipation","value":0,"y":0,"name":"anticipation"},{"Country":"Italy","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"Italy","variable":"fear","value":0,"y":0,"name":"fear"},{"Country":"Italy","variable":"joy","value":2,"y":2,"name":"joy"},{"Country":"Italy","variable":"sadness","value":0,"y":0,"name":"sadness"},{"Country":"Italy","variable":"surprise","value":0,"y":0,"name":"surprise"},{"Country":"Italy","variable":"trust","value":0,"y":0,"name":"trust"}],"type":"line"},{"name":"Kenya","data":[{"Country":"Kenya","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"Kenya","variable":"anticipation","value":0,"y":0,"name":"anticipation"},{"Country":"Kenya","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"Kenya","variable":"fear","value":0,"y":0,"name":"fear"},{"Country":"Kenya","variable":"joy","value":1,"y":1,"name":"joy"},{"Country":"Kenya","variable":"sadness","value":0,"y":0,"name":"sadness"},{"Country":"Kenya","variable":"surprise","value":0,"y":0,"name":"surprise"},{"Country":"Kenya","variable":"trust","value":0,"y":0,"name":"trust"}],"type":"line"},{"name":"Moldova","data":[{"Country":"Moldova","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"Moldova","variable":"anticipation","value":2,"y":2,"name":"anticipation"},{"Country":"Moldova","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"Moldova","variable":"fear","value":2,"y":2,"name":"fear"},{"Country":"Moldova","variable":"joy","value":0,"y":0,"name":"joy"},{"Country":"Moldova","variable":"sadness","value":0,"y":0,"name":"sadness"},{"Country":"Moldova","variable":"surprise","value":0,"y":0,"name":"surprise"},{"Country":"Moldova","variable":"trust","value":0,"y":0,"name":"trust"}],"type":"line"},{"name":"Namibia","data":[{"Country":"Namibia","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"Namibia","variable":"anticipation","value":0,"y":0,"name":"anticipation"},{"Country":"Namibia","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"Namibia","variable":"fear","value":0,"y":0,"name":"fear"},{"Country":"Namibia","variable":"joy","value":0,"y":0,"name":"joy"},{"Country":"Namibia","variable":"sadness","value":0,"y":0,"name":"sadness"},{"Country":"Namibia","variable":"surprise","value":0,"y":0,"name":"surprise"},{"Country":"Namibia","variable":"trust","value":0,"y":0,"name":"trust"}],"type":"line"},{"name":"Nigeria","data":[{"Country":"Nigeria","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"Nigeria","variable":"anticipation","value":0,"y":0,"name":"anticipation"},{"Country":"Nigeria","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"Nigeria","variable":"fear","value":0,"y":0,"name":"fear"},{"Country":"Nigeria","variable":"joy","value":0,"y":0,"name":"joy"},{"Country":"Nigeria","variable":"sadness","value":0,"y":0,"name":"sadness"},{"Country":"Nigeria","variable":"surprise","value":0,"y":0,"name":"surprise"},{"Country":"Nigeria","variable":"trust","value":0,"y":0,"name":"trust"}],"type":"line"},{"name":"Saudia Arabia","data":[{"Country":"Saudia Arabia","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"Saudia Arabia","variable":"anticipation","value":0.285714285714286,"y":0.285714285714286,"name":"anticipation"},{"Country":"Saudia Arabia","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"Saudia Arabia","variable":"fear","value":0,"y":0,"name":"fear"},{"Country":"Saudia Arabia","variable":"joy","value":1.14285714285714,"y":1.14285714285714,"name":"joy"},{"Country":"Saudia Arabia","variable":"sadness","value":0.142857142857143,"y":0.142857142857143,"name":"sadness"},{"Country":"Saudia Arabia","variable":"surprise","value":0.142857142857143,"y":0.142857142857143,"name":"surprise"},{"Country":"Saudia Arabia","variable":"trust","value":0.428571428571429,"y":0.428571428571429,"name":"trust"}],"type":"line"},{"name":"South Africa","data":[{"Country":"South Africa","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"South Africa","variable":"anticipation","value":0,"y":0,"name":"anticipation"},{"Country":"South Africa","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"South Africa","variable":"fear","value":0,"y":0,"name":"fear"},{"Country":"South Africa","variable":"joy","value":0,"y":0,"name":"joy"},{"Country":"South Africa","variable":"sadness","value":0,"y":0,"name":"sadness"},{"Country":"South Africa","variable":"surprise","value":0,"y":0,"name":"surprise"},{"Country":"South Africa","variable":"trust","value":0,"y":0,"name":"trust"}],"type":"line"},{"name":"Uganda","data":[{"Country":"Uganda","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"Uganda","variable":"anticipation","value":0,"y":0,"name":"anticipation"},{"Country":"Uganda","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"Uganda","variable":"fear","value":0.5,"y":0.5,"name":"fear"},{"Country":"Uganda","variable":"joy","value":0.5,"y":0.5,"name":"joy"},{"Country":"Uganda","variable":"sadness","value":0,"y":0,"name":"sadness"},{"Country":"Uganda","variable":"surprise","value":0,"y":0,"name":"surprise"},{"Country":"Uganda","variable":"trust","value":0.5,"y":0.5,"name":"trust"}],"type":"line"},{"name":"United Arab Emirates","data":[{"Country":"United Arab Emirates","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"United Arab Emirates","variable":"anticipation","value":1,"y":1,"name":"anticipation"},{"Country":"United Arab Emirates","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"United Arab Emirates","variable":"fear","value":1,"y":1,"name":"fear"},{"Country":"United Arab Emirates","variable":"joy","value":0,"y":0,"name":"joy"},{"Country":"United Arab Emirates","variable":"sadness","value":0,"y":0,"name":"sadness"},{"Country":"United Arab Emirates","variable":"surprise","value":0,"y":0,"name":"surprise"},{"Country":"United Arab Emirates","variable":"trust","value":0,"y":0,"name":"trust"}],"type":"line"},{"name":"United Kingdom","data":[{"Country":"United Kingdom","variable":"anger","value":0,"y":0,"name":"anger"},{"Country":"United Kingdom","variable":"anticipation","value":0.666666666666667,"y":0.666666666666667,"name":"anticipation"},{"Country":"United Kingdom","variable":"disgust","value":0,"y":0,"name":"disgust"},{"Country":"United Kingdom","variable":"fear","value":0.0833333333333333,"y":0.0833333333333333,"name":"fear"},{"Country":"United Kingdom","variable":"joy","value":0.333333333333333,"y":0.333333333333333,"name":"joy"},{"Country":"United Kingdom","variable":"sadness","value":0.166666666666667,"y":0.166666666666667,"name":"sadness"},{"Country":"United Kingdom","variable":"surprise","value":0.25,"y":0.25,"name":"surprise"},{"Country":"United Kingdom","variable":"trust","value":0.666666666666667,"y":0.666666666666667,"name":"trust"}],"type":"line"},{"name":"United States","data":[{"Country":"United States","variable":"anger","value":0.2,"y":0.2,"name":"anger"},{"Country":"United States","variable":"anticipation","value":0.436363636363636,"y":0.436363636363636,"name":"anticipation"},{"Country":"United States","variable":"disgust","value":0.109090909090909,"y":0.109090909090909,"name":"disgust"},{"Country":"United States","variable":"fear","value":0.145454545454545,"y":0.145454545454545,"name":"fear"},{"Country":"United States","variable":"joy","value":0.436363636363636,"y":0.436363636363636,"name":"joy"},{"Country":"United States","variable":"sadness","value":0.145454545454545,"y":0.145454545454545,"name":"sadness"},{"Country":"United States","variable":"surprise","value":0.218181818181818,"y":0.218181818181818,"name":"surprise"},{"Country":"United States","variable":"trust","value":0.563636363636364,"y":0.563636363636364,"name":"trust"}],"type":"line"}],"xAxis":{"labels":{"enabled":false}}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>(Hover over a country line to see mean score by sentiment)</p>
+</section>
+<section id="iv.-geomapping" class="level1">
+<h1>IV. Geomapping</h1>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'leaflet' was built under R version 4.2.2</code></pre>
+</div>
+<div class="cell-output-display">
+
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ae7a0e6916f0c4399e5c" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-ae7a0e6916f0c4399e5c">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[55.0061885,37.331159,23.523078,41.298394,34.0207895,44.6447485,-1.2748635,41.142333,0.2892675,51.4970015,36.786042,36.0609645,23.895049,41.1179365,-23.0480485,23.523078,23.523078,37.822244,27.698682,40.647153,51.3342375,35.8439815,37.822244,40.780709,52.84709,-33.8361765,44.9706105,33.676926,38.898603,40.6708795,45.7974455,42.9488405,33.739992,34.0207895,41.4755585,41.275721,40.7055975,27.7957195,38.653771,43.629311,46.6798,19.17414,29.838495,41.837267,52.033567,33.9536335,45.00118,23.523078,37.552481,51.4603395,23.523078,31.1688935,32.6782075,44.9706105,35.274809,46.9791625,39.9946835,35.1170025,-22.9664185,34.302731,40.0048655,38.8808445,0.2892675,41.516021,35.84742,40.0048655,51.5494385,45.630589,32.810012,45.248791,45.188407,30.284611,-33.848244,23.523078,41.519556,53.415257,30.3233455,9.912799,23.523078,41.4194095,51.570425,41.1179365,40.0048655,40.3681295,27.698682,26.405874,51.464686,54.78581,34.0207895,29.6731715,29.496199,55.4739975],[-7.312945,-121.8737305,45.113681,-72.9291585,-118.4119065,10.8969155,36.86362,-81.246344,32.56916,-3.1798,-119.7824645,-115.135165,53.65571,-77.604684,29.910904,45.113681,45.113681,-85.7682405,-83.804475,-76.149651,-0.3841695,-78.657837,-85.7682405,-73.9685415,-2.298134,18.6612735,-93.2620465,-111.973998,-77.0143985,-73.8311875,-108.562922,-81.2487865,-117.8874385,-118.4119065,-81.5065025,-96.053431,-73.977717,-82.672903,-90.247824,-79.2725695,-110.0447835,72.874244,-95.4464865,-87.9519485,-0.7640635,-118.3461525,-86.2705395,45.113681,-122.3154215,-0.115406,45.113681,-100.0768885,-83.1738665,-93.2620465,-120.664965,28.38991,-82.985772,-106.632718,18.4321515,-83.81881,-75.117998,-77.101999,32.56916,-87.689699,-86.40961,-75.117998,0.7212505,-122.5889745,-117.104989,-75.8001415,-68.984705,-97.731864,150.931975,45.113681,-88.1425115,-2.8516565,-97.754724,8.8863195,45.113681,-75.66877,0.4571355,-77.604684,-75.117998,-74.423131,-83.804475,80.3460625,-0.0706035,-1.5585545,-118.4119065,-82.3302695,-98.609315,-2.720484],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["@emma_montg Thankfully the heating is back on now! I’m going to cherish it &amp; camp next to the radiator all night","Happy six month anniversary, W! 💜💛💙🎊🔥🤗\n⭐️⭐️⭐️⭐️⭐️","What a situation!' cried Miss Squeers; '\n\n https://t.co/BomNJGRhlt","Congratulations, and well deserved Prof @fabian_theis!! We are all proud and grateful for your amazing work, leader… https://t.co/p8JIJlO0W9","Off to NYC today! I was going to bring a new improved Hawkeye Yelena cosplay to shoot at Rockefeller Center like in… https://t.co/1At12CuWjB","@IanDowlen Gee, this is a masterpiece!!! I love it 🤩","@jack @E_Langat I would love to meet you. Is it possible -!","@SaraCarterDC @Jim_Jordan Destroying evidence, I don't think so, someone has to stop this insanity!","Banks!\n\nAfter banking with them for a whole year, they throw a party to thank their staff and forget customers who… https://t.co/22z0fwXKxq","@Dorkfeatures @KathW80 Literally!! Me and my brother subconsciously matched our outfits to the vibe. Think I’m gonn… https://t.co/Jnd6209i7x","@GOP I sure u DO &amp; it ISN'T JUST TALK !!","@justinhintontv Classic Movie! Is Rachel Whitney and you’re Reverend Henry Biggs? I’m guessing JB and I are the kid… https://t.co/4HnV8pWpAw","@MyNameIsKatarin @rhomhazar @InformPh We were not talking about risk and impact! We were talking about how and wher… https://t.co/piW2PeRhpF","@UnCleT215 I have been using @BattleArmsDev Sabertube!! I’ve been trying to keep all my builds uniform lately so th… https://t.co/l7lFYSKJYO","Do you remember when you joined Twitter? I do! #MyTwitterAnniversary https://t.co/CkY4DTzB06","Friendship is Love without his wings!\n\n https://t.co/XkCDuTR2vG","Friendship is Love without his wings!\n\n https://t.co/HlD0xICzBA","It’s always tit for tat with this man!! I’m being inconvenienced but this is my fault 😒","@ZenZooma I’m in!","Yes, we do!  I’m a moderate Republican.  I want REAL ISSUES dealt with.  If investigating Hunter and Fauci will fix… https://t.co/5rYDKhaplZ","Got an email at work today from someone called Morgan and my heart flipped! I had a lovely American boyfriend calle… https://t.co/lcZMQ9wvYH","@jdcollado good, y’all deserve it!\n\ni have a few things left to wrap up but i basically told everyone to expect me… https://t.co/y7PsT4UwSb","Good luck to Chris! I just wish he would have been able to set that record during regular season. One of the greate… https://t.co/a755XzftJn","@metalman49 @LewisGloverMMA @JFlashGordonMMA @NateRockQuarry Thanks!!!   So you’re saying place a few dollars on my… https://t.co/uneMBGgmbR","@tomazellijr @kumagaiviviani Don’t worry, it’s alright!\nAnd yes, one of my nationalities is Brazilian, I will never… https://t.co/eR2CEYEZ4h","@BokangWrote I opened it once and never back! I should add hillbrow to my areas of interest, just to monitor it","@hogbutter I bet!! The snow storms will probably be intense too but that’s nothing someone raised in Duluth can’t handle hahaha","@Theholisticpsyc I am ready to do the work, Dr. LePera!  Thank you for taking the time to fly around the Valley to… https://t.co/rAvSBOR2Bk","😂😂😂😂 hearing spouses too!","@joshuacassara Haha no need to be sorry. I was just teasin’! :)","I hate when people tell me about their bodily issues. So gross!","I’m going to sign up for more shifts this evening. You should too!\n\nThese 2-3 hour shifts fly by and are always ful… https://t.co/es6X6fsZlj","I got a million on this boy @BordeauxTitus next season!! I been watching the work being done, I've listened to the… https://t.co/nyWtsFP7av","The last few weeks have been super emotional for me and all I could think was you said these days would come!I know… https://t.co/TBrDQPQBnA","I think ima go tubing with my coworkers this weekend!","No need to apologize brother!","As he should! ENJOY, QUERIDO 🐰🔥🪬✨💫 @sanbenito","Jeff. I need one of these Stat!! Wow great job!","Look @Marvel we need more of the Watts!!!","@HarTorah Happy anniversary!! This is how I found you guys! It’s been true love ever since!! I have stickers to pro… https://t.co/JSe9mL3CNR","@callmejakeaight I'm shocked, I didn't know it was on the table!  That girl is going to write...a...book.  I'm so h… https://t.co/YF3sKohyRM","@aerobalani @flyboy_forever @rpramodhkumar @UtkarshThakkar @RajivSi53259510 Done! I am vegetarian 🤘","Exactly how I want you to be cousin !!! 😭","@Chewy Has the most Amazing customer service!!! I've never experienced service like this from any company!! I will… https://t.co/pT6L3eziHm","I’ll be there!","Cuff me &amp; fucc this pretty face until I cry! 😳 #LosAngeles https://t.co/zIVt3Frx8S","@brittneygriner i am so Very Happy to hear this lady is on her way home, where she belongs!!!","My vanity is I'm terribly romantic! But \n\n https://t.co/1mj7QHe3hR","@foolfoundation @themotleyfool I had a great conversation with Jackie earlier this week. I’m looking forward to paying it forward!","Top choice!","I love Neil Young. And he loves me! We h\n\n https://t.co/uM8CY43qS2","You deserve this so much jordan I am so proud of you!!!!","The fam! #kingdomman","@BullishDumpling Gm 🥟. Now I’m bullish on the day!","@linablue I gotta do better to get to the top next year!  &lt;3 🤣 https://t.co/FmLqUsNL12","I just pulled Akumu #294, a 1/1 edition of madmonk's collection \"Akumu \"Nightmare\" Blueprints\" on @AsyncArt!\n\nWatch… https://t.co/rBJGCgqrSu","@AKBrews It’s the vibration of the organ.  I like sitting on them, too!","@hotdianacastell Good morning to you! 😁 I wish I can wake up on the side of you!","I think Swakop have accepted me. The weather is dope!!!","Had a great visit @hoopscoach2421 at @BUGoldenTigers I am so excited for my future as a Golden Tiger! https://t.co/N937HQt1bi","@FangasmSPN @mollyhagan January 11th will be here super fast! Well, I distracted myself so...","Really don’t understand why hotels don’t place bags in trash cans!!!! My food came up last night and I grabbed the… https://t.co/2mEbb7lmXH","Guys really want to add Mudryk to this monster team???!!.......I will love it. https://t.co/VpZI1RprII","@ItalkAlot9080 True now that I’m thinking about 04, I agree.  I just paid attention to the names!","This trend is hilarious 😂 But seriously, come see me at my last 2 shows of the year next week! Tues the 13th I’m pl… https://t.co/JH1Tp3FH5E","@rickburin Moving the two I haven't seen, the Lubitsch and the Kazan, up my watchlist!","I don’t like the thought of snow. Is southerners never prepared for it! Hoping @EssexWeather will have better news… https://t.co/rGctcueKVI","@Sew_Me_Up just fyi, i’m not hating on the new single! i’ll have to give it a few more listens","Peter and AJ are madmen and I'm all the way here for it !!","That’s what I’m saying! Right?? Like it would make sense since S2’s already been out for a while it wouldn’t make s… https://t.co/q5cUT8FzRT","@Strongeaspoop I got you both!\nThanks! https://t.co/5M6NARUwmZ","I just finished my degree 🤘😀\nI’m graduating from The University of Texas at Austin! \nSee y’all in May 🫡🫡 Hook ‘em 🤘","Look how much I learned on Duolingo in 2022! How did you do? #Duolingo365 https://t.co/8TKTWXkjuE","Just to love! She did not ask to be love\n\n https://t.co/1uBwg77HGQ","@JolietJrCollege @clynenamuo @parisandjune I'm sure your Phoenix, San Diego, and Hawaii friends and colleagues are loving this!! 🤣🤣","So glad I never threw my oneseys out😊Brrrrr!","@garyvee I love the new collection and can’t wait to wear my new gear!!","Hello tweethearts!\n\nQuick one! Who knows where I can get Anaguta’s Traditional Attire here in Jos?? \n\nI’ll apprecia… https://t.co/8MtfzXQAv5","God's grace is amazing! We're saved by g\n\n https://t.co/rrKceaz0jx","So agree. Total joy to see she was coming home! First thing I saw when I picked up phone then saw it also did not i… https://t.co/BNeUZ8XDW1","I would gladly devour this simple kapenta and dassa dish on the morning after the night before! Yet another popular… https://t.co/uClldSTvMr","@JudyMaxB9632935 I agree with this!  That’s how I feel.  That’s what I what I was asking for.  The why people do it.","@JasonKelce I would love ❤️ the newest phone out!!!!","I'd love to! Always a seasonal favorite 🩰🐀🍬🕰🎄#Selfmade #AdventCalendar https://t.co/6omcwxH0W8","Not me going into the office and I saw one of my fave supervisors and the first thing he said to me was “we miss you!!” 🥹","Haan Haan I am not that One Awesome person you met on Twitter !!","@TracyBorman @HodderBooks I am, very much! ❤️❤️❤️ xxx","Oh my effing G!! Thank goodness ❤️🙌🏽❤️ that’s made my day! @brittneygriner is FREE!! 🎉🎉🎉🎉","Please follow these women!! They are the real deal and I was sooo pleasantly surprised to see so many familiar face… https://t.co/HHxXJh97Lx","So proud!! Incredible human!!","👏🏼👏🏼👏🏼👏🏼👏🏼👏🏼 \n\nI swear half this fanbase is delusional and half actually care! Shout out to those of us that care.… https://t.co/95p8Po5XtE","@wrmkay Absolutely! ☺️ I do like to know the names of them all but I’ve had to accept that for some I won’t. It cou… https://t.co/lwz6rrSzln"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":[null,null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[10.5,-20.35],1,[]],"limits":{"lat":[-33.848244,55.4739975],"lng":[-122.5889745,150.931975]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>(Click on the location markers to see tweet content)</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
