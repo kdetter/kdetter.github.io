@@ -1,0 +1,185 @@
+---
+title: "Use of Exclamation Points in Twitter Posts"
+author: "Karen Detter"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### Introduction
+
+Punctuation marks are usually removed from text before sentiment analysis is conducted, but exclamation points in particular can indicate the magnitude of emotions like anger or joy.
+
+To examine the use of exclamation points in Twitter posts, random streams of tweets were collected over several hours on 12/08/22. After filtering for english language and use of exclamation points, the final n = 585 tweets.
+
+Examining a word cloud of aggregated post content showed exclamation points were generally used when expressing positive feelings, such as joy, love, and gratitude. 
+
+Sentiment analysis, however, showed that exclamation points were used somewhat differently according to the user's country. For example, users from Moldova, United Arab Emirates, and Uganda had significant fear scores for their posts with exclamation points. Of course, this was an extremely small study which contained only random tweets posted during a short time period, so no inference can be made from the results. 
+
+Future studies could examine the emotions associated with exclamation point use more in-depth by using a much larger dataset of social media posts, limiting included posts to specific topics, or making comparisons between posts that do and don't use exclamation points.
+
+
+**Initial Code Used To Create Data File**
+```{r}
+# collect data set tweet stream
+
+#library(rtweet)
+#auth_as("default")
+#stream <- tempfile(fileext = ".json")
+#tweets_set <- stream_tweets("I", lang = "en", timeout = 600, file_name = stream)
+
+#save as R data
+#save(tweets_set, file="tweets_set.rda")
+```
+
+# I. Prep Tweets Data Set For Analysis
+
+```{r}
+# filter for only english tweets
+
+#library(tidyverse)
+#load('tweets_set.rda')
+#tweets_eng <- tweets_set %>% filter(grepl("en", lang))
+```
+
+```{r}
+# remove non-geo-tagged tweets
+
+#library(rtweet)
+#geocodes <- lat_lng(tweets_eng)
+#with_geocodes <- geocodes[!is.na(geocodes$lat),] 
+```
+
+# II. Word Cloud
+
+```{r}
+# filter for data set rows that contain '!'
+
+#tweets_with <- tweets_eng %>% filter(grepl("!", text))
+```
+
+```{r}
+# generate word cloud of filtered data set
+
+library(tidyverse)
+library(tm)
+library(wordcloud)
+library(SnowballC)
+library(RColorBrewer)
+text <- readLines("tweets_with.txt")
+#create corpus
+tweets <- Corpus(VectorSource(text))
+#remove numbers
+tweets <- tm_map(tweets, removeNumbers)
+#remove common stopwords
+tweets <- tm_map(tweets, removeWords, stopwords("english"))
+#remove punctuation
+tweets <- tm_map(tweets, removePunctuation)
+#eliminate extra white spaces
+tweets <- tm_map(tweets, stripWhitespace)
+#text stemming
+tweets <- tm_map(tweets, stemDocument)
+#convert text to lower case
+tweets <- tm_map(tweets, content_transformer(tolower))
+
+#build term-document matrix
+dtm <- TermDocumentMatrix(tweets)
+m <- as.matrix(dtm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+
+#generate word cloud
+set.seed(1234)
+wordcloud(words = d$word, freq = d$freq, min.freq = 200,
+          max.words=200, random.order=FALSE, random.color = TRUE, rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
+```
+
+# III. Sentiment Analysis By Location
+
+```{r}
+library(tidyverse)
+library(reshape2)
+library(syuzhet)
+library(highcharter)
+
+# sentiment detection
+
+#load('with_geocodes.rda')
+#sentiment <- get_nrc_sentiment(with_geocodes$text)
+#with_geocodes_sent <- cbind(with_geocodes, sentiment)
+```
+
+```{r}
+# lookup countries by latitude and longitude
+
+#library(tidygeocoder)
+#full_data <- with_geocodes_sent %>% reverse_geocode(lat = lat, long = lng, #method = 'arcgis', full_results = TRUE)
+```
+
+```{r}
+# sentiment summary statistics by location
+load('full_data.rda')
+full_data$Country <- as.factor(full_data$CntryName)
+senti_aggregated <- full_data %>%
+  group_by(Country) %>%
+  summarize(anger = mean(anger), anticipation = mean(anticipation), disgust = mean(disgust), fear = mean(fear), joy = mean(joy), sadness = mean(sadness), surprise = mean(surprise), trust = mean(trust))
+senti_aggregated <- senti_aggregated %>% pivot_longer(cols = -c(Country), names_to = 'variable', values_to = 'value')
+```
+
+```{r}
+#visualize with tidytext
+library(tidytext)
+library(textdata)
+library(tidyverse)
+
+post_clean <- full_data %>%
+  dplyr::select(text)%>%
+  unnest_tokens(word, text)
+senti_word_counts <- post_clean %>%
+  inner_join(get_sentiments('nrc')) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  ungroup()
+senti_word_counts %>%
+  group_by(sentiment) %>%
+  top_n(5) %>%
+  ungroup() %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n, fill = sentiment)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~sentiment, scales = 'free_y') +
+  labs(title = 'Words Contributing To Sentiment Scores',
+       y = NULL,
+       x = NULL) +
+  coord_flip()
+
+```
+
+```{r}
+#create highcharter plot of sentiment by location
+load('senti_aggregated.rda')
+highchart() %>%
+  hc_add_series(senti_aggregated, "line", hcaes(x = variable, y = value, group = Country)) %>%
+    hc_xAxis(
+      labels = list(enabled = FALSE))
+```
+
+(Hover over a country line to see mean score by sentiment)
+
+# IV. Geomapping
+
+```{r}
+#visualize with leaflet styles
+library(leaflet)
+load('with_geocodes.rda')
+map2 <- leaflet(data = with_geocodes) %>% 
+  addTiles() %>%
+  setView(lng = -20.35, lat = 10.50, zoom = 1) %>% 
+  addMarkers(lng = ~lng, lat = ~lat,popup = ~ as.character(text)) %>% 
+  addProviderTiles(providers$stadiaoutdoors) 
+map2
+```
+
+(Click on the location markers to see tweet content)
